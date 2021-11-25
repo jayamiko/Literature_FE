@@ -1,0 +1,8 @@
+.boxSearch{
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    margin-top: 50px;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}

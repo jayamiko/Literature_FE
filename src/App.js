@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+// Import React
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+// Import Admin Page
+import AdminPage from './Pages/AdminPage/AdminPage';
+import PrivateRoute from "./Components/PrivateRoutes/PrivateRoutes";
+
+// Import User Pages
+import Landing from './Pages/Landing/Landing';
+import SearchPage from './Pages/SearchPage/SearchPage';
+
+// Import Style
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/search-page" component={SearchPage} />
+        <PrivateRoute exact path="/admin-page" component={AdminPage} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
