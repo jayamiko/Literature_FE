@@ -28,6 +28,9 @@ color: #FFFFFF;
     align-items: center;
 }
 
+span a {
+  text-decoration: none;
+}
 /* Style DropDown */
 
 .dropdown {

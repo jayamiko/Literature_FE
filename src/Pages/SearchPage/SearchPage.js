@@ -7,6 +7,7 @@ import Navbar from '../../Components/Navbar/Navbar'
 import InputSearch from '../../Components/InputSearch/InputSearch'
 
 export default function SearchPage() {
+    
     return (
         <>
             <div className='backgroundPrimary'>

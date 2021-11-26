@@ -32,14 +32,33 @@ export default function Navbar() {
     return (
         <div className="navbar">
             <div className="menu">
-                <span>Profile</span>
-                <span>My Collections</span>
-                <span>Add Literature</span>
+                <Link to="/profile">
+                    <span>
+                        <a className="fw-bold text-dark" href="/profile"
+                            style={{ textDecoration: 'none', color: "white" }}>
+                            Profile
+                        </a>
+                    </span>
+                </Link>
+                <Link to="/my-collections">
+                    <span>
+                        <a className="fw-bold text-dark" href="/my-collections"
+                            style={{ textDecoration: 'none', color: "white" }}>
+                            My Collections
+                        </a>
+                    </span>
+                </Link>
+                <Link to="/add-collections">
+                    <span>
+                        <a className="fw-bold text-dark" href="/add-literature"
+                            style={{ textDecoration: 'none', color: "white" }}>
+                            Add Literature
+                        </a>
+                    </span>
+                </Link>
                 <span onClick={logoutHandle}>
-                    <a className="fw-bold text-dark"
-                        href="/"
-                        style={{ textDecoration: 'none', color: "white" }}
-                    >
+                    <a className="fw-bold text-dark" href="/"
+                        style={{ textDecoration: 'none', color: "white" }}>
                         Logout
                     </a>
                 </span>

@@ -11,6 +11,7 @@ import PrivateRoute from "./Components/PrivateRoutes/PrivateRoutes";
 import Landing from './Pages/Landing/Landing';
 import SearchPage from './Pages/SearchPage/SearchPage';
 import Home from './Pages/Home'
+import Profile from "./Pages/Profile/Profile";
 
 // Import Style
 import './App.css';
@@ -61,6 +62,9 @@ function App() {
         <Route exact path="/" component={Landing} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/search-page" component={SearchPage} />
+        <Route exact path="/profile" component={Profile} />
+
+        {/* Admin Page */}
         <PrivateRoute exact path="/admin-page" component={AdminPage} />
       </Switch>
     </BrowserRouter>
