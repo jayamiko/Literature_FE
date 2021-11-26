@@ -1,59 +1,79 @@
 // Import React
-import { useState } from "react";
+import { useState, useContext } from "react";
+
+// Import Components
+import { AuthContext } from "../../Context/AuthContextProvider";
 
 // Import Style
 import './Register.css'
-import { Button, Modal, Form, Alert } from "react-bootstrap";
+import { Button, Modal, Form } from "react-bootstrap";
 
 // Import API
-import { API } from '../../config/api'
+import { API, setAuthToken } from '../../config/api'
 
 export default function Register() {
 
-    const [show, setShow] = useState({
-        login: false,
-        register: false,
-    });
+    const { stateAuth, dispatch } = useContext(AuthContext);
+    const [modal, setModal] = useState(false);
+    const [registerModal, setRegisterModal] = useState(false);
 
-    const handleClose = () => {
-        setShow({ login: false, register: false });
+    const openModalLogin = () => {
+        setModal(true);
+        setRegisterModal(false);
     };
-
-    const handleShowLogin = () => {
-        setShow((prevState) => ({ ...prevState, login: true }));
+    const openModalRegister = () => {
+        setRegisterModal(true);
+        setModal(false);
     };
-
-    const handleShowRegister = () => {
-        setShow((prevState) => ({ ...prevState, register: true }));
-    };
-
-    const handleSwitch = () => {
-        if (show.login) {
-            setShow({ login: false, register: true });
-        } else {
-            setShow({ login: true, register: false });
-        }
-    };
+    const closeModalRegister = () => setRegisterModal(false);
 
     const [formRegister, setFormRegister] = useState({
-        name: "",
+        fullname: "",
         email: "",
         password: "",
-        gender: "",
+        gender: "male",
         phone: "",
         address: "",
     })
 
-    const { name, email, password, gender, phone, address } = formRegister;
+    const { fullname, email, password, gender, phone, address } = formRegister;
 
     const registerHandleChange = (e) => {
         setFormRegister({
             ...formRegister,
-            [e.target.name]: e.target.value,
+            [e.target.id]: e.target.value,
         })
     }
 
-    const registerHandleSubmit = async (e) => {
+    const loginHandler = async () => {
+        try {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+
+            const body = JSON.stringify({
+                email: formRegister.email,
+                password: formRegister.password,
+            });
+
+            const response = await API.post("/login", body, config);
+
+            setAuthToken(response?.data.data.token);
+
+            if (response?.status === 200) {
+                dispatch({
+                    type: "LOGIN",
+                    payload: response.data.data,
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const submitRegister = async (e) => {
         try {
             e.preventDefault();
 
@@ -66,59 +86,34 @@ export default function Register() {
             const body = JSON.stringify(formRegister)
             const response = await API.post("/register", body, config)
             console.log(response.status);
+            closeModalRegister()
+            loginHandler()
 
-            if (response?.status == 200) {
-                const alert = (
-                    <Alert variant="success">
-                        <Alert.Heading>Register Success</Alert.Heading>
-                    </Alert>
-                )
-                setFormRegister({
-                    name: "",
-                    email: "",
-                    password: "",
-                    gender: "",
-                    phone: "",
-                    address: "",
-                });
-                setShow(false);
-            } else {
-                const alert = (
-                    <Alert variant="danger">
-                        <Alert.Heading>Register Failed</Alert.Heading>
-                    </Alert>
-                )
-                setShow(false);
-            }
         } catch (error) {
-            const alert = (
-                < Alert variant="danger" className="py-1" >
-                    Failed
-                </Alert >
-            );
             console.log(error);
         }
     }
 
     return (
         <>
-            <Modal show={show.register} handleClose={handleClose} handleSwitch={handleSwitch} className='bodyModal'>
+            <Modal show={registerModal} onHide={closeModalRegister} className='bodyModal'>
                 <button
                     type="button"
                     class="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
-                    onClick={handleClose}
+                    onClick={closeModalRegister}
                     required
                 >x</button>
                 <Modal.Body>
                     <h2 className="headerModal">Sign Up</h2>
-                    <Form onSubmit={""} className='formModal'>
+                    <Form onSubmit={submitRegister} className='formModal'>
                         <Form.Group className="mb-4" controlId="formBasicEmail">
                             <Form.Control
                                 onChange={registerHandleChange}
                                 type="email"
                                 name="email"
+                                id="email"
                                 placeholder='Email'
                                 className='inputModal'
                                 required
@@ -132,6 +127,7 @@ export default function Register() {
                                 onChange={registerHandleChange}
                                 type="password"
                                 name="password"
+                                id="password"
                                 placeholder='Password'
                                 className='inputModal'
                                 required
@@ -139,18 +135,23 @@ export default function Register() {
                         </Form.Group>
                         <Form.Group className="mb-4" controlId="formBasicName">
                             <Form.Control
-                                name="name"
+                                name="fullname"
                                 onChange={registerHandleChange}
                                 type="text"
+                                id="fullname"
                                 placeholder='Full Name'
                                 className='inputModal'
                                 required
                             />
                         </Form.Group>
-                        <Form.Group className="mb-4" controlId="formBasicName" placeholder='Gender'>
-                            <Form.Select aria-label="Default select example" className='inputModal'>
-                                <option value="male" className='gender'>Male</option>
-                                <option value="female" className='gender'>Female</option>
+                        <Form.Group className="mb-3" controlId="gender">
+                            <Form.Select
+                                aria-label="gender"
+                                value={formRegister.gender}
+                                onChange={registerHandleChange}
+                            >
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-4" controlId="formBasicPhone">
@@ -158,16 +159,18 @@ export default function Register() {
                                 onChange={registerHandleChange}
                                 name="phone"
                                 type="text"
+                                id="phone"
                                 placeholder='Phone'
                                 className='inputModal'
                                 required
                             />
                         </Form.Group>
-                        <Form.Group className="mb-4" controlId="formBasicPhone">
+                        <Form.Group className="mb-4" controlId="address">
                             <Form.Control
                                 onChange={registerHandleChange}
                                 name="address"
                                 type="text"
+                                id="address"
                                 placeholder='Address'
                                 className='inputModal'
                                 required
@@ -182,8 +185,8 @@ export default function Register() {
                                 Sign Up
                             </Button>
                             <small className="text-center">
-                                Already have an account ?  Klik {handleShowLogin}
-                                <a href='/' className='link' onClick={handleShowLogin}>Here</a>
+                                Already have an account ?  Klik {""}
+                                <a href='/' className='link' onClick={openModalLogin}>Here</a>
                             </small>
                         </div>
                     </Form>
@@ -192,9 +195,9 @@ export default function Register() {
             <span>
                 <button
                     className="btnRegister"
-                    onClick={handleShowRegister}
+                    onClick={openModalRegister}
                     href="#services">
-                    Register
+                    Sign Up
                 </button>
             </span>
         </>
