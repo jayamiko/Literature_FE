@@ -5,31 +5,46 @@ import { useState } from "react";
 import './Register.css'
 import { Button, Modal, Form, Alert } from "react-bootstrap";
 
+// Import API
+import { API } from '../../config/api'
+
 export default function Register() {
 
-    const [modal, setModal] = useState(false);
-    const [registerModal, setRegisterModal] = useState(false);
-    const [message, setMessage] = useState(null)
+    const [show, setShow] = useState({
+        login: false,
+        register: false,
+    });
+
+    const handleClose = () => {
+        setShow({ login: false, register: false });
+    };
+
+    const handleShowLogin = () => {
+        setShow((prevState) => ({ ...prevState, login: true }));
+    };
+
+    const handleShowRegister = () => {
+        setShow((prevState) => ({ ...prevState, register: true }));
+    };
+
+    const handleSwitch = () => {
+        if (show.login) {
+            setShow({ login: false, register: true });
+        } else {
+            setShow({ login: true, register: false });
+        }
+    };
+
     const [formRegister, setFormRegister] = useState({
         name: "",
         email: "",
         password: "",
+        gender: "",
         phone: "",
         address: "",
     })
 
-    const openModalLogin = () => {
-        setModal(true);
-        setRegisterModal(false);
-    };
-    const openModalRegister = () => {
-        setRegisterModal(true);
-        setModal(false);
-    };
-    const closeModalLogin = () => setModal(false);
-    const closeModalRegister = () => setRegisterModal(false);
-
-    const { name, email, password, phone, address } = formRegister;
+    const { name, email, password, gender, phone, address } = formRegister;
 
     const registerHandleChange = (e) => {
         setFormRegister({
@@ -38,15 +53,62 @@ export default function Register() {
         })
     }
 
+    const registerHandleSubmit = async (e) => {
+        try {
+            e.preventDefault();
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }
+
+            const body = JSON.stringify(formRegister)
+            const response = await API.post("/register", body, config)
+            console.log(response.status);
+
+            if (response?.status == 200) {
+                const alert = (
+                    <Alert variant="success">
+                        <Alert.Heading>Register Success</Alert.Heading>
+                    </Alert>
+                )
+                setFormRegister({
+                    name: "",
+                    email: "",
+                    password: "",
+                    gender: "",
+                    phone: "",
+                    address: "",
+                });
+                setShow(false);
+            } else {
+                const alert = (
+                    <Alert variant="danger">
+                        <Alert.Heading>Register Failed</Alert.Heading>
+                    </Alert>
+                )
+                setShow(false);
+            }
+        } catch (error) {
+            const alert = (
+                < Alert variant="danger" className="py-1" >
+                    Failed
+                </Alert >
+            );
+            console.log(error);
+        }
+    }
+
     return (
         <>
-            <Modal show={registerModal} className='bodyModal'>
+            <Modal show={show.register} handleClose={handleClose} handleSwitch={handleSwitch} className='bodyModal'>
                 <button
                     type="button"
                     class="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
-                    onClick={closeModalRegister}
+                    onClick={handleClose}
                     required
                 >x</button>
                 <Modal.Body>
@@ -120,8 +182,8 @@ export default function Register() {
                                 Sign Up
                             </Button>
                             <small className="text-center">
-                                Already have an account ?  Klik {openModalLogin}
-                                <a href='/' className='link' onClick={openModalLogin}>Here</a>
+                                Already have an account ?  Klik {handleShowLogin}
+                                <a href='/' className='link' onClick={handleShowLogin}>Here</a>
                             </small>
                         </div>
                     </Form>
@@ -130,7 +192,7 @@ export default function Register() {
             <span>
                 <button
                     className="btnRegister"
-                    onClick={openModalRegister}
+                    onClick={handleShowRegister}
                     href="#services">
                     Register
                 </button>
