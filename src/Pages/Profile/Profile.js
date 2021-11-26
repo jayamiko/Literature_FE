@@ -22,7 +22,7 @@ import { API } from "../../config/api";
 
 export default function MyCollections() {
 
-    const { stateAuth, dispatch } = useContext(AuthContext);
+    const { stateAuth } = useContext(AuthContext);
     const [profile, setProfile] = useState([]);
 
     const getProfile = async () => {
@@ -87,9 +87,12 @@ export default function MyCollections() {
                                     />
                                 </div>
                             </div>
+                            <p className="title-myliterature">My literature</p>
                         </Container>
                     ))}
-                    <MyLiterature />
+                    <MyLiterature
+                        stateAuth={stateAuth.user.id}
+                    />
                 </Container>
             </div>
         </>

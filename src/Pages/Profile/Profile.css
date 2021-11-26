@@ -98,16 +98,6 @@ width: 1275px;
 height: 334px;
   }
 
-  .editPhoto{
-    margin-top: 10px;
-    background-color: orange;
-    text-align: center;
-    padding: 5px;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-  }
-
   .preview-image{
     display: flex;
     flex-direction: column;
@@ -150,4 +140,67 @@ color: #FFFFFF;
   .rounded{
     margin-top: 50px;
     border: solid white 0.1px;
+  }
+
+  .title-myliterature{
+font-family: 'Times New Roman';
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 101.5%;
+color: #FFFFFF !important;
+  }
+
+  .my-literature{
+    margin-right: 75px;
+  }
+
+  .text-truncate{
+    font-family: Times New Roman;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 120.5%;
+color: #FFFFFF;
+margin-top: 10px;
+  }
+
+  .author{
+    font-family: Avenir;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 101.5%;
+color: #929292;
+  }
+
+  .publication{
+    font-family: Avenir;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 101.5%;
+text-align: right;
+color: #929292;
+  }
+
+  iframe{
+    border-radius: 10px;
+  }
+  
+  .row{
+    display: flex;
+    position: relative;
+  bottom: 100px;
+    flex-direction: row !important;
+    width: 500px;
+    margin-bottom: 100px;
+  }
+
+  .container-literature{
+    position: relative;
+    bottom: 100px;
+    height: 500px;
+    width: 1300px;
+    padding: 100px;
   }

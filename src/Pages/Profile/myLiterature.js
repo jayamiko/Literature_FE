@@ -1,6 +1,5 @@
 // Import React
-import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../../Context/AuthContextProvider";
+import { useState, useEffect } from "react";
 
 // Import Components
 import CollectionsPDF from '../../Components/Collections/collectionsPDF'
@@ -8,32 +7,29 @@ import CollectionsPDF from '../../Components/Collections/collectionsPDF'
 // Import API
 import { API } from "../../config/api";
 
-export default function MyCollections() {
-    const [myCollections, setMyCollections] = useState([])
-    const { stateAuth, dispatch } = useContext(AuthContext);
-    console.log(stateAuth);
+export default function MyLiteature({ stateAuth }) {
+    const [myLiterature, setMyLiterature] = useState([])
 
-    const getMyCollections = async () => {
+    const getMyLiterature = async () => {
         try {
-            const response = await API.get(`/profile/${stateAuth.user?.id}/literatures`);
-            setMyCollections(response.data.data);
+            const response = await API.get(`/profile/${stateAuth}/literatures`);
+            setMyLiterature(response.data.data);
         } catch (error) {
             console.log(error);
         }
     };
 
     useEffect(() => {
-        getMyCollections();
+        getMyLiterature();
     }, []);
-    console.log(myCollections);
+    console.log(myLiterature);
 
     return (
         <>
             <section className="my-collections mt-5">
-                <div className="container">
-                    <h1 className="h3 fw-bold mb-4">My Literature</h1>
+                <div className="container-literature">
                     <div className="row">
-                        {myCollections.map((item, index) => (
+                        {myLiterature.map((item, index) => (
                             <div
                                 className="col-3 d-flex justify-content-center"
                                 key={`collections-${index}`}
