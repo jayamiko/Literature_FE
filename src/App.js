@@ -13,6 +13,8 @@ import SearchPage from './Pages/SearchPage/SearchPage';
 import Home from './Pages/Home'
 import Profile from "./Pages/Profile/Profile";
 import AddLiterature from "./Pages/AddLiterature/AddLiterature";
+import MyCollections from "./Pages/MyCollections/MyCollections";
+import SearchResult from "./Pages/SearchResult/SearchResult";
 
 // Import Style
 import './App.css';
@@ -65,6 +67,8 @@ function App() {
         <Route exact path="/search-page" component={SearchPage} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/add-literature" component={AddLiterature} />
+        <Route exact path="/my-collections" component={MyCollections} />
+        <Route exact path="/search-result" component={SearchResult} />
 
         {/* Admin Page */}
         <PrivateRoute exact path="/admin-page" component={AdminPage} />

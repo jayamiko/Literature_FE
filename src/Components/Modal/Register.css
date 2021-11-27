@@ -4,12 +4,13 @@ height: 50px;
 margin-left: 50px;
 background: #AF2E1C;
 border-radius: 5px;
-font-family: Avenir;
+font-family: 'Avenir';
 font-style: normal;
 font-weight: normal;
 font-size: 18px;
 line-height: 25px;
 color: #FFFFFF;
+cursor: pointer !important;
 }
 
 .bodyModal{
@@ -63,6 +64,7 @@ color: white;
 .submitRegister{
     margin-top: 15px;
     width: 350px;
+    cursor: pointer !important;
 height: 50px;
 left: 33px;
 top: 555px;
@@ -76,10 +78,6 @@ font-weight: normal;
 font-size: 18px;
 line-height: 25px;
 color: #FFFFFF;
-}
-
-.gender{
-    color: black;
 }
 
 .link{

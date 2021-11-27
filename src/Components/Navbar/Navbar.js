@@ -63,9 +63,11 @@ export default function Navbar() {
                     </a>
                 </span>
             </div>
-            <div className='iconNavbar'>
-                <img src={Icon} alt='icon-literature' />
-            </div>
+            <Link to='/home'>
+                <div className='iconNavbar'>
+                    <img src={Icon} alt='icon-literature' />
+                </div>
+            </Link>
         </div>
     )
 }

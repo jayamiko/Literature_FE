@@ -1,0 +1,22 @@
+.title-mycollections{
+    font-family: 'Times New Roman';
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 101.5%;
+color: #FFFFFF !important;
+padding-left: 80px;
+}
+
+.container-mycollections{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 50px;
+}
+
+.mycollections{
+    position: relative;
+    top: 140px;
+    right: 25px;
+}

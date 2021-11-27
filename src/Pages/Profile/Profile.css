@@ -120,9 +120,11 @@ background: #AF2E1C;
 border-radius: 5px;
     width: 226.67px !important;
     margin-top: 15px;
+    cursor: pointer !important;
   }
 
   .label-upload{
+    cursor: pointer !important;
     font-family: 'Avenir';
 font-style: normal;
 font-weight: normal;

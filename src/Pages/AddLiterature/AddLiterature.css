@@ -40,6 +40,7 @@ justify-content: space-between;
     position: relative;
     top: 15px;
     padding-left: 10px;
+    cursor: pointer !important;
 }
 
 .buttonAdd{
@@ -58,6 +59,8 @@ font-weight: normal;
 font-size: 18px;
 line-height: 25px;
 color: #FFFFFF;
+cursor: pointer !important;
+
 }
 
 .attache-icon{
@@ -66,4 +69,5 @@ color: #FFFFFF;
     right: 10px;
     width: 20px;
 height: 30px;
+cursor: pointer !important;
 }

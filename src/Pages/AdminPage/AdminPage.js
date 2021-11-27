@@ -3,12 +3,22 @@ import { Table } from "react-bootstrap";
 
 // Import Component
 import NavbarAdmin from '../../Components/Navbar/NavbarAdmin'
+import TableVerification from "../../Components/Tables/Table";
 
 export default function AdminPage() {
     return (
         <>
             <NavbarAdmin />
-            <div style={{ backgroundColor: "white", height: "650px" }}>
+            <div style={{
+                background: '#F9F9F9',
+                height: '80vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
+                <TableVerification />
+            </div>
+            {/* <div style={{ backgroundColor: "white", height: "650px" }}>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -80,8 +90,8 @@ export default function AdminPage() {
                             </td>
                         </tr>
                     </tbody>
-                </Table>
-            </div >
+                </Table> */}
+            {/* </div > */}
         </>
     )
 }

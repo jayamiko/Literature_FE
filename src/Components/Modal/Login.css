@@ -10,6 +10,7 @@
 }
 
 .btnLogin{
+    cursor: pointer !important;
 width: 211px;
 height: 50px;
 margin-left: 20px;

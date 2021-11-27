@@ -147,11 +147,16 @@ export default function Register() {
                         <Form.Group className="mb-3" controlId="gender">
                             <Form.Select
                                 aria-label="gender"
+                                className='inputModal'
                                 value={formRegister.gender}
                                 onChange={registerHandleChange}
                             >
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="male"
+                                    style={{ color: 'grey' }}
+                                >Male</option>
+                                <option value="female"
+                                    style={{ color: 'grey' }}
+                                >Female</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-4" controlId="formBasicPhone">
@@ -184,7 +189,7 @@ export default function Register() {
                                 required>
                                 Sign Up
                             </Button>
-                            <small className="text-center">
+                            <small style={{ marginTop: "10px" }}>
                                 Already have an account ?  Klik {""}
                                 <a href='/' className='link' onClick={openModalLogin}>Here</a>
                             </small>
