@@ -12,6 +12,7 @@ import Landing from './Pages/Landing/Landing';
 import SearchPage from './Pages/SearchPage/SearchPage';
 import Home from './Pages/Home'
 import Profile from "./Pages/Profile/Profile";
+import AddLiterature from "./Pages/AddLiterature/AddLiterature";
 
 // Import Style
 import './App.css';
@@ -63,6 +64,7 @@ function App() {
         <Route exact path="/home" component={Home} />
         <Route exact path="/search-page" component={SearchPage} />
         <Route exact path="/profile" component={Profile} />
+        <Route exact path="/add-literature" component={AddLiterature} />
 
         {/* Admin Page */}
         <PrivateRoute exact path="/admin-page" component={AdminPage} />

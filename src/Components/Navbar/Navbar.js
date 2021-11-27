@@ -48,7 +48,7 @@ export default function Navbar() {
                         </a>
                     </span>
                 </Link>
-                <Link to="/add-collections">
+                <Link to="/add-literature">
                     <span>
                         <a className="fw-bold text-dark" href="/add-literature"
                             style={{ textDecoration: 'none', color: "white" }}>
