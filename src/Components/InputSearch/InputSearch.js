@@ -1,7 +1,7 @@
 // Import Style
 import searchIcon from '../../Images/icon-search.png'
 import { Button, Form } from "react-bootstrap";
-import './InputSearch.css'
+// import './Search.css'
 
 export default function InputSearch() {
     return (

@@ -4,7 +4,7 @@ import { AuthContext } from "../Context/AuthContextProvider";
 
 // Import Pages
 import AdminPage from './AdminPage/AdminPage'
-import SearchPage from "./SearchPage/SearchPage";
+import SearchPage from "./SearchPage/Search";
 
 export default function Landing() {
 
