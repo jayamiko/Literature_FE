@@ -9,12 +9,10 @@ import PrivateRoute from "./Components/PrivateRoutes/PrivateRoutes";
 
 // Import User Pages
 import Landing from './Pages/Landing/Landing';
-import SearchPage from './Pages/SearchPage/Search';
 import Home from './Pages/Home'
 import Profile from "./Pages/Profile/Profile";
 import AddLiterature from "./Pages/AddLiterature/AddLiterature";
 import MyCollections from "./Pages/MyCollections/MyCollections";
-import SearchResult from "./Pages/SearchResult/SearchPage";
 import DetailLiterature from './Pages/DetailLiterature/DetailLiterature';
 
 // Import Style
@@ -64,12 +62,10 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Landing} />
-        <Route exact path="/home" component={SearchResult} />
-        <Route exact path="/search-page" component={SearchPage} />
+        <Route exact path="/home" component={Home} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/add-literature" component={AddLiterature} />
         <Route exact path="/my-collections" component={MyCollections} />
-        {/* <Route exact path="/search-result" component={SearchResult} /> */}
         <Route exact path="/detail-literature/:id" component={DetailLiterature} />
 
         {/* Admin Page */}

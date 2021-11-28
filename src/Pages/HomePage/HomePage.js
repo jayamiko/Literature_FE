@@ -1,5 +1,5 @@
 import { useState } from "react";
-import '../SearchPage/Search.css'
+import './Search.css'
 import { Button } from "react-bootstrap";
 import { API } from "../../config/api";
 import iconLiterature from '../../Images/icon-lg.png'
@@ -145,10 +145,15 @@ export default function SearchResult() {
                     <img src={iconLiterature} alt="Literature Logo"
                         style={{
                             position: 'absolute',
-                            top: '250px'
+                            top: '220px',
+                            right: '520px'
                         }}
                     />
-                    <div className="formModal" style={{ width: 600 }}>
+                    <div className="formModal" style={{
+                        width: 600,
+                        marginLeft: '450px',
+                        marginTop: '50px'
+                    }}>
                         <form className="formGroup" onSubmit={handleSearch}>
                             <input
                                 className="inputSearch"

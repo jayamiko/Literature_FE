@@ -4,7 +4,7 @@ import { AuthContext } from "../Context/AuthContextProvider";
 
 // Import Pages
 import AdminPage from './AdminPage/AdminPage'
-import SearchPage from "./SearchPage/Search";
+import HomePage from "./HomePage/HomePage";
 
 export default function Landing() {
 
@@ -19,7 +19,7 @@ export default function Landing() {
                         <AdminPage />
                     </>
                 ) : (
-                    <SearchPage />
+                    <HomePage />
                 )
             }
         </>
