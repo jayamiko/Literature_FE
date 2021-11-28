@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import React, { useContext } from "react";
 import { AuthContext } from '../../Context/AuthContextProvider';
+import { pdfjs, Document, Page } from "react-pdf";
 
 // Import Style
 import './AddLiterature.css';
@@ -18,17 +19,23 @@ import Navbar from '../../Components/Navbar/Navbar';
 import { API } from '../../config/api'
 
 toast.configure()
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export default function AddLiterature() {
 
     const history = useHistory();
     const { stateAuth } = useContext(AuthContext);
-    const [preview, setPreview] = useState([]);
-    console.log(stateAuth.user.id);
+    const [preview, setPreview] = useState(null);
+
+    let date = new Date().toLocaleDateString("id-ID");
+    const day = date.split("/")[0];
+    const month = date.split("/")[1];
+    const year = date.split("/")[2];
+    date = `${year}-${month}-${day}`;
 
     const [input, setInput] = useState({
         title: "",
-        publication_date: "",
+        publication_date: date,
         userId: stateAuth.user.id,
         pages: "",
         isbn: "",
@@ -43,12 +50,12 @@ export default function AddLiterature() {
                 e.target.type === "file" ? e.target.files : e.target.value,
         });
 
-        if (e.target.name === "attache") {
-            const target = e.target.files;
-            const formArr = Array.from(target).map((file) =>
-                URL.createObjectURL(file)
-            );
-            setPreview((item) => item.concat(formArr));
+        if (e.target.type === "file") {
+            const filePDF = e.target.files;
+
+            for (const file of filePDF) {
+                setPreview(URL.createObjectURL(file));
+            }
         }
     };
 
@@ -69,6 +76,7 @@ export default function AddLiterature() {
             data.set("pages", input.pages);
             data.set("isbn", input.isbn);
             data.set("author", input.author);
+            data.set("attache", input.attache, input.attache.name);
 
             const response = await API.post("/literature", data, config);
 
@@ -77,6 +85,18 @@ export default function AddLiterature() {
                     position: toast.POSITION.BOTTOM_RIGHT,
                     autoClose: 2000
                 })
+
+                setInput({
+                    title: "",
+                    userId: stateAuth.user?.id,
+                    publication_date: date,
+                    pages: "",
+                    isbn: "",
+                    author: "",
+                    attache: "",
+                });
+
+                setPreview(null);
             }
 
         } catch (error) {
@@ -128,6 +148,7 @@ export default function AddLiterature() {
                             paddingLeft: '10px'
                         }}
                         onChange={handleChange}
+                        value={input.publication_date}
                     />
                 </Form.Group>
 
@@ -190,20 +211,20 @@ export default function AddLiterature() {
 
                 <Form.Group controlId="formFile" className="mb-3">
                     <label className="ml-3">
-                        {preview &&
-                            preview.map((item) => (
-                                <img
-                                    style={{
-                                        width: "220px",
-                                        height: "150px",
-                                        marginTop: "20px",
-                                        marginBottom: "30px",
-                                        marginRight: "10px",
-                                    }}
-                                    src={item}
-                                    alt="receipt"
-                                />
-                            ))}
+
+                        {preview && (
+                            <div className="mt-3">
+                                <Document file={preview}>
+                                    <Page
+                                        pageNumber={1}
+                                        width={200}
+                                        height={270}
+                                        className="rounded"
+                                    />
+                                </Document>
+                            </div>
+                        )}
+
                         <div className='attache-input'>
                             <img src={"attache"}
                                 placeholder="Attache Book File"

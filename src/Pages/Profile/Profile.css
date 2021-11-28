@@ -154,7 +154,10 @@ color: #FFFFFF !important;
   }
 
   .my-literature{
-    margin-right: 75px;
+    position: relative;
+    width: 550px;
+    bottom: 50px;
+    height: max-content;
   }
 
   .text-truncate{
