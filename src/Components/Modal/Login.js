@@ -8,9 +8,13 @@ import { AuthContext } from "../../Context/AuthContextProvider";
 // Import Style
 import { Button, Modal, Form } from "react-bootstrap";
 import './Login.css'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 // Import API
 import { API, setAuthToken } from '../../config/api'
+
+toast.configure()
 
 export default function Login() {
 
@@ -72,6 +76,14 @@ export default function Login() {
                     type: "LOGIN",
                     payload: response.data.data,
                 });
+
+                if (response?.status === 200) {
+                    toast.success('Login Success!', {
+                        position: toast.POSITION.BOTTOM_RIGHT,
+                        autoClose: 2000
+                    })
+                }
+
                 closeModalLogin();
             }
         } catch (error) {

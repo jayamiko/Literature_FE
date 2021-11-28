@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    right: 100px;
+    right: 50px;
 }
 
 .info-detail h1,h3{

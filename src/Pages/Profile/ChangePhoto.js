@@ -1,6 +1,15 @@
+// Import React
 import { useState } from "react";
-import { API } from "../../config/api";
+
+// Import Style
 import './Profile.css'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+// Import API
+import { API } from "../../config/api";
+
+toast.configure()
 
 export default function Avatar({ userId, photo }) {
     const [preview, setPreview] = useState(photo);
@@ -19,11 +28,17 @@ export default function Avatar({ userId, photo }) {
             const formData = new FormData();
             formData.set("photo", e.target.files[0], e.target.files[0].name);
 
-            await API.put(`/user/${userId}`, formData, config);
-
+            const response = await API.put(`/user/${userId}`, formData, config);
 
             setTimeout(() => {
             }, 1000);
+
+            if (response?.status === 200) {
+                toast.success(`Update Profile Successful`, {
+                    position: toast.POSITION.BOTTOM_RIGHT,
+                    autoClose: 2000
+                })
+            }
         } catch (error) {
             console.log(error);
         }

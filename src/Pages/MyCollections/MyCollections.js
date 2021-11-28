@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { AuthContext } from '../../Context/AuthContextProvider';
 
 // import Style
-import './MyCollections.css'
+import './MyCollections.css';
 
 // Import Components
 import Navbar from '../../Components/Navbar/Navbar';
-import CollectionsPDF from '../../Components/Collections/collectionsPDF'
+import CollectionsPDF from '../../Components/Collections/collectionsPDF';
 
 // Import API
 import { API } from '../../config/api'

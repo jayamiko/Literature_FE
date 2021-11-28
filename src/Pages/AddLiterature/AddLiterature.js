@@ -8,12 +8,16 @@ import { AuthContext } from '../../Context/AuthContextProvider';
 import './AddLiterature.css';
 import { Form, Button } from "react-bootstrap";
 import attache from '../../Images/attache.png';
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 // Import Components
 import Navbar from '../../Components/Navbar/Navbar';
 
 // import API
 import { API } from '../../config/api'
+
+toast.configure()
 
 export default function AddLiterature() {
 
@@ -67,8 +71,14 @@ export default function AddLiterature() {
             data.set("author", input.author);
 
             const response = await API.post("/literature", data, config);
-            history.push("/home");
-            console.log(response.data.data);
+
+            if (response?.status === 200) {
+                toast.success(`Add Literature Successful`, {
+                    position: toast.POSITION.BOTTOM_RIGHT,
+                    autoClose: 2000
+                })
+            }
+
         } catch (error) {
             console.log(error);
         }

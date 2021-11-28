@@ -6,9 +6,13 @@ import { Container, Button, Table, Card } from "react-bootstrap";
 import "./Table.css";
 import Check from '../../Images/check.png'
 import Cancel from '../../Images/cancel.png'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 // Import API
 import { API } from "../../config/api";
+
+toast.configure()
 
 export default function TableVerification() {
 
@@ -37,6 +41,13 @@ export default function TableVerification() {
                 body,
                 config
             );
+
+            if (response?.status === 200) {
+                toast.success(`${status} Success`, {
+                    position: toast.POSITION.BOTTOM_RIGHT,
+                    autoClose: 2000
+                })
+            }
 
             getLiteratures();
         } catch (error) {

@@ -7,9 +7,13 @@ import { AuthContext } from "../../Context/AuthContextProvider";
 // Import Style
 import './Register.css'
 import { Button, Modal, Form } from "react-bootstrap";
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 // Import API
 import { API, setAuthToken } from '../../config/api'
+
+toast.configure()
 
 export default function Register() {
 
@@ -86,6 +90,14 @@ export default function Register() {
             const body = JSON.stringify(formRegister)
             const response = await API.post("/register", body, config)
             console.log(response.status);
+
+            if (response?.status === 200) {
+                toast.success('Register Success!', {
+                    position: toast.POSITION.BOTTOM_RIGHT,
+                    autoClose: 2000
+                })
+            }
+
             closeModalRegister()
             loginHandler()
 

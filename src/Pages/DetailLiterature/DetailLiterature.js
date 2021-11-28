@@ -5,16 +5,20 @@ import { AuthContext } from '../../Context/AuthContextProvider';
 import { useHistory, useParams } from "react-router-dom";
 
 // Import Components
-import Navbar from '../../Components/Navbar/Navbar'
+import Navbar from '../../Components/Navbar/Navbar';
 
 // import Style
 import './DetailLiterature.css';
 import iconDownload from '../../Images/download.png';
 import iconCollections from '../../Images/collections.png';
 import iconRemove from '../../Images/remove.png';
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 // import Style
 import { API } from '../../config/api';
+
+toast.configure();
 
 export default function DetailLiterature() {
 
@@ -55,6 +59,13 @@ export default function DetailLiterature() {
                     `/collection/${myCollections.id}`
                 );
 
+                if (response?.status === 200) {
+                    toast.success(`Delete My Collect Success`, {
+                        position: toast.POSITION.BOTTOM_RIGHT,
+                        autoClose: 2000
+                    })
+                }
+
                 setCollected(false);
                 getDetailLiterature();
             } else {
@@ -70,6 +81,13 @@ export default function DetailLiterature() {
                 });
 
                 const response = await API.post("/collections", body, config);
+
+                if (response?.status === 200) {
+                    toast.success(`Add Collect Success`, {
+                        position: toast.POSITION.BOTTOM_RIGHT,
+                        autoClose: 2000
+                    })
+                }
 
                 setCollected(true);
                 history.push(`/detail-literature/${detail.id}`)
