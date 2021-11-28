@@ -131,7 +131,7 @@ export default function Login() {
                                 required>
                                 Sign In
                             </Button>
-                            <small className="text-center">
+                            <small style={{ marginTop: '10px' }}>
                                 Already have an account ?  Klik {""}
                                 <a href='/' className='link' onClick={closeModalLogin}>Here</a>
                             </small>

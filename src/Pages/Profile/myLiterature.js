@@ -1,5 +1,6 @@
 // Import React
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // Import Components
 import CollectionsPDF from '../../Components/Collections/collectionsPDF'
@@ -22,6 +23,7 @@ export default function MyLiteature({ stateAuth }) {
     useEffect(() => {
         getMyLiterature();
     }, []);
+
     console.log(myLiterature);
 
     return (
@@ -32,14 +34,20 @@ export default function MyLiteature({ stateAuth }) {
                         {myLiterature.map((item, index) => (
                             <div
                                 className="col-3 d-flex justify-content-center"
-                                key={`collections-${index}`}
+                                key={item.id}
+                                style={{ cursor: 'pointer' }}
                             >
-                                <CollectionsPDF
-                                    attache={item.attache}
-                                    title={item.title}
-                                    author={item.author}
-                                    publication_date={item.publication_date}
-                                />
+                                <Link to={`/detail-literature/${item.id}`}
+                                    style={{
+                                        textDecoration: "none",
+                                    }}>
+                                    <CollectionsPDF
+                                        attache={item.attache}
+                                        title={item.title}
+                                        author={item.author}
+                                        publication_date={item.publication_date}
+                                    />
+                                </Link>
                             </div>
                         ))}
                     </div>

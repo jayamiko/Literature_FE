@@ -16,7 +16,11 @@ padding-left: 80px;
 }
 
 .mycollections{
-    position: relative;
-    top: 140px;
-    right: 25px;
+    display: flex;
+    margin-left: 80px;
+    margin-right: 80px;
+    justify-content: space-between;
+    margin-top: 50px;
+    height: 1000px;
+    flex-wrap: wrap;
 }

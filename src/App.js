@@ -15,6 +15,7 @@ import Profile from "./Pages/Profile/Profile";
 import AddLiterature from "./Pages/AddLiterature/AddLiterature";
 import MyCollections from "./Pages/MyCollections/MyCollections";
 import SearchResult from "./Pages/SearchResult/SearchResult";
+import DetailLiterature from './Pages/DetailLiterature/DetailLiterature';
 
 // Import Style
 import './App.css';
@@ -69,6 +70,7 @@ function App() {
         <Route exact path="/add-literature" component={AddLiterature} />
         <Route exact path="/my-collections" component={MyCollections} />
         <Route exact path="/search-result" component={SearchResult} />
+        <Route exact path="/detail-literature/:id" component={DetailLiterature} />
 
         {/* Admin Page */}
         <PrivateRoute exact path="/admin-page" component={AdminPage} />

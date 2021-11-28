@@ -32,7 +32,7 @@ export default function Navbar() {
     return (
         <div className="navbar">
             <div className="menu">
-                <Link to="/profile">
+                <Link to="/profile" style={{ textDecoration: "none" }}>
                     <span>
                         <a className="fw-bold text-dark" href="/profile"
                             style={{ textDecoration: 'none', color: "white" }}>
@@ -40,7 +40,7 @@ export default function Navbar() {
                         </a>
                     </span>
                 </Link>
-                <Link to="/my-collections">
+                <Link to="/my-collections" style={{ textDecoration: "none" }}>
                     <span>
                         <a className="fw-bold text-dark" href="/my-collections"
                             style={{ textDecoration: 'none', color: "white" }}>
@@ -48,7 +48,7 @@ export default function Navbar() {
                         </a>
                     </span>
                 </Link>
-                <Link to="/add-literature">
+                <Link to="/add-literature" style={{ textDecoration: "none" }}>
                     <span>
                         <a className="fw-bold text-dark" href="/add-literature"
                             style={{ textDecoration: 'none', color: "white" }}>
