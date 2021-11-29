@@ -1,19 +1,18 @@
 // Import React
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from '../../Context/AuthContextProvider'
-import { useHistory } from "react-router-dom";
 
 // Import Style
 import './Navbar.css'
 import Icon from '../../Images/icon-sm.png'
 
-
-
 export default function Navbar() {
 
     let history = useHistory();
+    const { pathname } = useLocation();
+    const split = pathname.split("/");
     const { stateAuth, dispatch } = useContext(AuthContext);
 
     const logoutHandle = (e) => {
@@ -32,33 +31,55 @@ export default function Navbar() {
     return (
         <div className="navbar">
             <div className="menu">
-                <Link to="/profile" style={{ textDecoration: "none" }}>
+                <Link to="/profile"
+                    style={{ textDecoration: "none" }}
+                >
                     <span>
-                        <a className="fw-bold text-dark" href="/profile"
-                            style={{ textDecoration: 'none', color: "white" }}>
+                        <a href="/profile"
+                            className={`nav-color ${split[1] === "profile"
+                                ? "nav-active"
+                                : "nav-pasif"
+                                }`}
+                            style={{ textDecoration: 'none' }}>
                             Profile
                         </a>
                     </span>
                 </Link>
-                <Link to="/my-collections" style={{ textDecoration: "none" }}>
+                <Link to="/my-collections"
+                    style={{ textDecoration: "none" }}>
                     <span>
-                        <a className="fw-bold text-dark" href="/my-collections"
-                            style={{ textDecoration: 'none', color: "white" }}>
+                        <a href="/my-collections"
+                            className={`nav-color ${split[1] === "my-collections"
+                                ? "nav-active"
+                                : "nav-pasif"
+                                }`}
+                            aria-current="page"
+                            style={{ textDecoration: 'none' }}>
                             My Collections
                         </a>
                     </span>
                 </Link>
-                <Link to="/add-literature" style={{ textDecoration: "none" }}>
+                <Link to="/add-literature"
+                    style={{ textDecoration: "none" }}>
                     <span>
-                        <a className="fw-bold text-dark" href="/add-literature"
-                            style={{ textDecoration: 'none', color: "white" }}>
+                        <a href="/add-literature"
+                            className={`nav-color ${split[1] === "add-literature"
+                                ? "nav-active"
+                                : "nav-pasif"
+                                }`}
+                            aria-current="page"
+                            style={{ textDecoration: 'none' }}>
                             Add Literature
                         </a>
                     </span>
                 </Link>
                 <span onClick={logoutHandle}>
-                    <a className="fw-bold text-dark" href="/"
-                        style={{ textDecoration: 'none', color: "white" }}>
+                    <a href="/"
+                        className={`nav-color ${split[1] === "/"
+                            ? "nav-active"
+                            : "nav-pasif"
+                            }`}
+                        style={{ textDecoration: 'none' }}>
                         Logout
                     </a>
                 </span>

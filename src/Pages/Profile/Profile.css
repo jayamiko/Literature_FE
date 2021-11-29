@@ -144,6 +144,11 @@ color: #FFFFFF;
     border: solid white 0.1px;
   }
 
+  .frame-pdf{
+    margin-top: 50px;
+    border-radius: 10px;
+  }
+
   .title-myliterature{
 font-family: 'Times New Roman';
 font-style: normal;
@@ -155,7 +160,7 @@ color: #FFFFFF !important;
 
   .my-literature{
     position: relative;
-    width: 550px;
+    width: 225px;
     bottom: 50px;
     height: max-content;
   }

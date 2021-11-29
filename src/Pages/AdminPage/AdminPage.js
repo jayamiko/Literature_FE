@@ -11,7 +11,7 @@ export default function AdminPage() {
             <NavbarAdmin />
             <div style={{
                 background: '#F9F9F9',
-                height: '100vh',
+                height: '250vh',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center'

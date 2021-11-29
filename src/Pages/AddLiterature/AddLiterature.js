@@ -76,20 +76,14 @@ export default function AddLiterature() {
             data.set("pages", input.pages);
             data.set("isbn", input.isbn);
             data.set("author", input.author);
-            data.set("attache", input.attache, input.attache.name);
 
             const response = await API.post("/literature", data, config);
 
             if (response?.status === 200) {
-                toast.success(`Add Literature Successful`, {
-                    position: toast.POSITION.BOTTOM_RIGHT,
-                    autoClose: 2000
-                })
-
                 setInput({
                     title: "",
                     userId: stateAuth.user?.id,
-                    publication_date: date,
+                    publication_date: "",
                     pages: "",
                     isbn: "",
                     author: "",
@@ -97,6 +91,11 @@ export default function AddLiterature() {
                 });
 
                 setPreview(null);
+
+                toast.success(`Add Literature Successful`, {
+                    position: toast.POSITION.BOTTOM_RIGHT,
+                    autoClose: 2000
+                })
             }
 
         } catch (error) {
@@ -129,6 +128,7 @@ export default function AddLiterature() {
                             paddingLeft: '10px'
                         }}
                         onChange={handleChange}
+                        value={input.title}
                     />
                 </Form.Group>
 
@@ -168,6 +168,7 @@ export default function AddLiterature() {
                             paddingLeft: '10px'
                         }}
                         onChange={handleChange}
+                        value={input.pages}
                     />
                 </Form.Group>
 
@@ -187,6 +188,7 @@ export default function AddLiterature() {
                             paddingLeft: '10px'
                         }}
                         onChange={handleChange}
+                        value={input.isbn}
                     />
                 </Form.Group>
 
@@ -206,6 +208,7 @@ export default function AddLiterature() {
                             paddingLeft: '10px'
                         }}
                         onChange={handleChange}
+                        input={""}
                     />
                 </Form.Group>
 
@@ -219,7 +222,7 @@ export default function AddLiterature() {
                                         pageNumber={1}
                                         width={200}
                                         height={270}
-                                        className="rounded"
+                                        className="frame-pdf"
                                     />
                                 </Document>
                             </div>

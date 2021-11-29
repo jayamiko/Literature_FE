@@ -5,6 +5,7 @@ import { useState } from "react";
 import './Profile.css'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Icon from '../../Images/profile-default.jpg'
 
 // Import API
 import { API } from "../../config/api";
@@ -12,7 +13,7 @@ import { API } from "../../config/api";
 toast.configure()
 
 export default function Avatar({ userId, photo }) {
-    const [preview, setPreview] = useState(photo);
+    const [preview, setPreview] = useState(Icon);
 
     const handleChange = async (e) => {
         try {
@@ -52,7 +53,7 @@ export default function Avatar({ userId, photo }) {
                     alt="User"
                     width="226.67"
                     height="202"
-                    value={photo}
+                    value={Icon}
                     className="rounded"
                 />
                 <div className='btnChange'>

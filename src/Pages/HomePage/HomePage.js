@@ -30,8 +30,8 @@ export default function SearchResult() {
             .filter((value, index) => {
                 return pub_years.indexOf(value) === index;
             })
-            .sort((a, b) => {
-                return b - a;
+            .sort((x, y) => {
+                return y - x;
             });
 
         setYears(uniqueYears);
@@ -111,7 +111,7 @@ export default function SearchResult() {
                                     </select>
                                 </div>
                                 <div className="box-literature-result">
-                                    <div className="row g-4">
+                                    <div className="row">
                                         {resultSearch
                                             .filter((item) => {
                                                 if (
@@ -125,6 +125,7 @@ export default function SearchResult() {
                                                     <CollectionsPDF
                                                         attache={item?.attache}
                                                         literatureId={item?.id}
+                                                        status={item?.status}
                                                         title={item?.title}
                                                         author={item?.author}
                                                         publication_date={item?.publication_date}
