@@ -23,7 +23,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 export default function AddLiterature() {
 
-    const history = useHistory();
     const { stateAuth } = useContext(AuthContext);
     const [preview, setPreview] = useState(null);
 

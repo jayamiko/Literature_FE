@@ -5,6 +5,7 @@ import { AuthContext } from '../../Context/AuthContextProvider';
 
 // import Style
 import './MyCollections.css';
+import iconPDF from '../../Images/pdf-file.png'
 
 // Import Components
 import Navbar from '../../Components/Navbar/Navbar';
@@ -33,27 +34,55 @@ export default function MyCollections() {
         getMyCollections();
     }, []);
 
-    console.log(myCollections);
+    console.log(myCollections.length);
 
     return (
         <>
             <Navbar />
-
             <div className='container-mycollections'>
+                <p className="title-mycollections">My Collections</p>
                 <div>
-                    <p className="title-mycollections">My Collections</p>
-                </div>
-
-                <div className='mycollections'>
-                    {myCollections.map((item, index) => (
-                        <CollectionsPDF
-                            attache={item?.literature.attache}
-                            literatureId={item?.literature.id}
-                            title={item?.literature.title}
-                            author={item?.literature.author}
-                            publication_date={item?.literature.publication_date}
-                        />
-                    ))}
+                    {myCollections.length < 1 ? (
+                        <div>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    marginTop: '50px',
+                                    opacity: '70%'
+                                }}>
+                                <img src={iconPDF} alt=""
+                                    style={{
+                                        width: '350px',
+                                        height: '350px',
+                                    }} />
+                            </div>
+                            <h3
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    opacity: '70%',
+                                }}
+                            >Empty Collections</h3>
+                        </div>
+                    ) : (
+                        <>
+                            <div className='mycollections'>
+                                {
+                                    myCollections.map((item, index) => (
+                                        <CollectionsPDF
+                                            attache={item?.literature.attache}
+                                            literatureId={item?.literature.id}
+                                            title={item?.literature.title}
+                                            status={item?.literature.status}
+                                            author={item?.literature.author}
+                                            publication_date={item?.literature.publication_date}
+                                        />
+                                    ))
+                                }
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         </>

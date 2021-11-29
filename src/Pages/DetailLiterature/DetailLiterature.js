@@ -1,6 +1,7 @@
 // Import React
 import React, { useContext } from "react";
 import { useEffect, useState } from 'react';
+import { pdfjs, Document, Page } from "react-pdf";
 import { AuthContext } from '../../Context/AuthContextProvider';
 import { useHistory, useParams } from "react-router-dom";
 
@@ -19,9 +20,9 @@ import 'react-toastify/dist/ReactToastify.css'
 import { API } from '../../config/api';
 
 toast.configure();
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export default function DetailLiterature() {
-
     const { id } = useParams();
     const { stateAuth } = useContext(AuthContext);
     const history = useHistory();
@@ -111,9 +112,12 @@ export default function DetailLiterature() {
             <Navbar />
             <div className='detail-box'>
                 <div>
-                    <iframe src={detail?.attache} title={detail?.title}
-                        width="400px" height="543px"
-                        style={{ borderRadius: '10px' }} />
+                    <Document file={detail?.attache} style={{
+                        borderRadius: '10px',
+                        position: 'absolute',
+                    }}>
+                        <Page pageNumber={1} width={400} height={543} borderRadius={10} />
+                    </Document>
                 </div>
                 <div className="info-detail">
                     <div className='row-detail'>

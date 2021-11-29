@@ -16,28 +16,50 @@ export default function ColectionsPDF(props) {
     return (
         <>
             {status === "Approve" ? (
-                <div div className="my-literature" >
+                <div
+                    className="my-literature"
+                >
                     <Link to={`/detail-literature/${literatureId}`}
                         style={{ textDecoration: 'none' }}
                     >
                         <div
                             style={{
-                                width: 200,
-                                display: 'flex',
-                                flexDirection: 'column',
+                                width: '200px',
+                                height: '400px',
+                                flexWrap: 'wrap',
+                                justifyContent: 'flex-start',
+                                marginTop: '25px',
                                 cursor: 'pointer',
                             }}
                         >
-                            <div className="document-pdf" >
-                                <Document file={attache} style={{ borderRadius: '10px' }}>
-                                    <Page pageNumber={1} width={200} height={270} borderRadius={10} className="frame-pdf" />
+                            <div>
+                                <Document file={attache} style={{
+                                    borderRadius: '10px',
+                                    position: 'absolute',
+                                }}>
+                                    <Page pageNumber={1} width={200} height={270} borderRadius={10} />
                                 </Document>
                             </div>
-                            <h3 className="h5 fw-bold text-truncate my-3">{title}</h3>
+                            <div
+                                style={{
+                                    position: 'relative',
+                                    bottom: '40px',
+                                    marginBottom: '20px',
+                                    fontFamily: "Times New Roman",
+                                    fontStyle: "normal",
+                                    fontWeight: "bold",
+                                    fontSize: "24px",
+                                    lineHeight: "120.5%",
+                                    color: "#FFFFFF",
+                                }}
+                                className="title-file"
+                            >{title}</div>
                             <div
                                 style={{
                                     justifyContent: 'space-between',
-                                    display: 'flex'
+                                    display: 'flex',
+                                    position: 'relative',
+                                    bottom: '40px'
                                 }}>
                                 <div className="author">{author}</div>
                                 <div className="publication-year"

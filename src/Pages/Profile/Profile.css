@@ -139,9 +139,9 @@ padding-left: 35px;
 color: #FFFFFF;
   }
 
-  .rounded{
+  .profile-box{
     margin-top: 50px;
-    border: solid white 0.1px;
+    background: url(../../Images//profile-default.jpg);
   }
 
   .frame-pdf{

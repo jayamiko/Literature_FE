@@ -7,6 +7,10 @@ import iconSearch from '../../Images/icon-search.png'
 import Navbar from '../../Components/Navbar/Navbar'
 import CollectionsPDF from "../../Components/Collections/collectionsPDF";
 
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure()
+
 export default function SearchResult() {
     const [search, setSearch] = useState("");
     const [resultSearch, setResultSearch] = useState([]);
@@ -47,6 +51,16 @@ export default function SearchResult() {
             setResultSearch(response.data.data);
 
             publication_year(response.data.data);
+
+            console.log(resultSearch);
+            console.log(search);
+
+            if (search === "" && resultSearch.length !== 0) {
+                toast.error('Please enter your search', {
+                    position: toast.POSITION.BOTTOM_RIGHT,
+                    autoClose: 2000
+                })
+            }
         } catch (error) {
             console.log(error);
         }
@@ -55,7 +69,7 @@ export default function SearchResult() {
     return (
         <div className="container-search-page">
             <Navbar />
-            {resultSearch.length ? (
+            {resultSearch.length !== 0 && search !== "" ? (
                 <main className="py-4">
                     <div className="container">
                         <div className="formModal" style={{

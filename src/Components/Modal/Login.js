@@ -22,7 +22,6 @@ export default function Login() {
     const [registerModal, setRegisterModal] = useState(false);
 
     const { stateAuth, dispatch } = useContext(AuthContext);
-    const [message, setMessage] = useState(null)
     let history = useHistory();
 
     const checkAuth = () => {
