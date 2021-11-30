@@ -26,15 +26,9 @@ export default function AddLiterature() {
     const { stateAuth } = useContext(AuthContext);
     const [preview, setPreview] = useState(null);
 
-    let date = new Date().toLocaleDateString("id-ID");
-    const day = date.split("/")[0];
-    const month = date.split("/")[1];
-    const year = date.split("/")[2];
-    date = `${year}-${month}-${day}`;
-
     const [input, setInput] = useState({
         title: "",
-        publication_date: date,
+        publication_date: "",
         userId: stateAuth.user.id,
         pages: "",
         isbn: "",
@@ -135,7 +129,7 @@ export default function AddLiterature() {
                 <Form.Group className="mb-3">
                     <Form.Control
                         className="inputAdd"
-                        type="text"
+                        type="date"
                         name="publication_date"
                         id="publication_date"
                         placeholder='Publication Date'
@@ -147,7 +141,6 @@ export default function AddLiterature() {
                             paddingLeft: '10px'
                         }}
                         onChange={handleChange}
-                        value={input.publication_date}
                     />
                 </Form.Group>
 

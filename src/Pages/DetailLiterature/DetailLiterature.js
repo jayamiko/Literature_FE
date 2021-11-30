@@ -7,14 +7,15 @@ import { useHistory, useParams } from "react-router-dom";
 
 // Import Components
 import Navbar from '../../Components/Navbar/Navbar';
+import { downloadFile } from "../../Components/Collections/downloadFile";
 
 // import Style
 import './DetailLiterature.css';
 import iconDownload from '../../Images/download.png';
 import iconCollections from '../../Images/collections.png';
 import iconRemove from '../../Images/remove.png';
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // import Style
 import { API } from '../../config/api';
@@ -104,7 +105,11 @@ export default function DetailLiterature() {
     }, []);
 
     const handleDownload = () => {
-        window.open(detail.attache);
+        downloadFile(detail.attache, String(detail.title));
+        toast.success(`Delete My Collect Success`, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+            autoClose: 2000
+        })
     };
 
     return (
@@ -131,7 +136,7 @@ export default function DetailLiterature() {
 
                     <div className='row-detail'>
                         <h3>Publication date</h3>
-                        <p>{detail?.publication_date}</p>
+                        <p>{new Date(detail?.publication_date).toLocaleDateString()}</p>
                     </div>
                     <div className='row-detail'>
                         <h3>Pages</h3>
@@ -147,10 +152,16 @@ export default function DetailLiterature() {
                         className="btn-download"
                         onClick={handleDownload}
                     >
-                        <a href={detail?.attache} download="filepdf">
+                        <span href={detail?.attache} download="filepdf"
+                            style={{
+                                fontFamily: 'Avenir',
+                                fontSize: '18px',
+                                lineHeight: '25px',
+                                color: '#FFFFFF'
+                            }}>
                             Download
                             <img src={iconDownload} alt="icon-download" />
-                        </a>
+                        </span>
                     </button>
 
                 </div>

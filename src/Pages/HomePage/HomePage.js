@@ -56,7 +56,7 @@ export default function SearchResult() {
             console.log(search);
 
             if (search === "" && resultSearch.length !== 0) {
-                toast.error('Please enter your search', {
+                toast.info('your search is not in our library', {
                     position: toast.POSITION.BOTTOM_RIGHT,
                     autoClose: 2000
                 })
