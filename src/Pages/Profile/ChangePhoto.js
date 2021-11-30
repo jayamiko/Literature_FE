@@ -51,11 +51,12 @@ export default function Avatar({ userId, photo }) {
                 height: 345,
             }}>
                 <img
-                    src={photo}
+                    src={preview}
                     alt="User"
                     width="226.67"
                     height="202"
                     className="profile-box"
+                    value={photo}
                 />
                 <div className='btnChange'>
                     <input

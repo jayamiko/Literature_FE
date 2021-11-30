@@ -20,18 +20,18 @@
 
 .anytime p {
     font-family: 'Avenir';
-font-style: normal;
-font-weight: 800;
-font-size: 18px;
-line-height: 25px;
-color: #AF2E1C;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 25px;
+    color: #AF2E1C;
 }
 
 .inputSearch{
-width: 600px;
-height: 50px;
-left: 395px;
-top: 444px;
+    width: 600px;
+    height: 50px;
+    left: 395px;
+    top: 444px;
 background: rgba(210, 210, 210, 0.25);
 border: 2px solid #BCBCBC;
 box-sizing: border-box;
@@ -51,7 +51,7 @@ padding-left: 10px;
     background: #AF2E1C;
     border: 2px solid #AF2E1C;
     box-sizing: border-box;
-border-radius: 5px;
+    border-radius: 5px;
 }
 
 .formGroup{
@@ -78,21 +78,21 @@ border-radius: 5px;
 
 .formSelect{
     position: absolute;
-width: 160px;
-height: 34px;
-left: 78px;
-top: 271px;
-background: rgba(210, 210, 210, 0.25);
-border: 2px solid #BCBCBC;
-box-sizing: border-box;
-border-radius: 5px;
-
-font-family: 'Avenir';
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 25px;
-color: #FFFFFF;
+    width: 160px;
+    height: 34px;
+    left: 78px;
+    top: 271px;
+    background: rgba(210, 210, 210, 0.25);
+    border: 2px solid #BCBCBC;
+    box-sizing: border-box;
+    border-radius: 5px;
+    
+    font-family: 'Avenir';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #FFFFFF;
 }
 
 .box-literature-result{
@@ -103,11 +103,11 @@ color: #FFFFFF;
     position: relative;
     top: 100px;
     height: max-content;
+    margin-left: 50px;
 }
 
 .row{
     width: 1400px !important;
     flex-wrap: wrap;
     height: max-content;
-    justify-content: space-evenly;
 }

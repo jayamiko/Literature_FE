@@ -27,11 +27,37 @@ export default function MyLiteature({ stateAuth }) {
         getMyLiterature();
     }, []);
 
-    console.log(myLiterature.length);
+    console.log(myLiterature);
 
     return (
         <>
-            {myLiterature.length === 0 ? (
+            {myLiterature.length !== 0 ? (
+                <section className="my-collections mt-5">
+                    <div className="container-literature">
+                        <div className="row">
+                            {myLiterature.map((item, index) => (
+                                <div
+                                    key={item.id}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    <Link to={`/detail-literature/${item.id}`}
+                                        style={{
+                                            textDecoration: "none",
+                                        }}>
+                                        <CollectionsPDF
+                                            attache={item.attache}
+                                            title={item.title}
+                                            status={item?.status}
+                                            author={item.author}
+                                            publication_date={item.publication_date}
+                                        />
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            ) : (
                 <div>
                     <div
                         style={{
@@ -53,32 +79,8 @@ export default function MyLiteature({ stateAuth }) {
                         }}
                     >Empty My Literature</h3>
                 </div>
-            ) : (
-                <section className="my-collections mt-5">
-                    <div className="container-literature">
-                        <div className="row">
-                            {myLiterature.map((item, index) => (
-                                <div
-                                    className="col-3 d-flex justify-content-center"
-                                    key={item.id}
-                                    style={{ cursor: 'pointer' }}
-                                >
-                                    <Link to={`/detail-literature/${item.id}`}
-                                        style={{
-                                            textDecoration: "none",
-                                        }}>
-                                        <CollectionsPDF
-                                            attache={item.attache}
-                                            title={item.title}
-                                            author={item.author}
-                                            publication_date={item.publication_date}
-                                        />
-                                    </Link>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+
+
             )}
         </>
     )

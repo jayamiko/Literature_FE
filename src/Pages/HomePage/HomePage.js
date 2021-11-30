@@ -67,20 +67,114 @@ export default function SearchResult() {
     };
 
     return (
-        <div className="container-search-page">
+        <>
             <Navbar />
-            {resultSearch.length !== 0 && search !== "" ? (
-                <main className="py-4">
-                    <div className="container">
+            <div className="container-search-page">
+                {resultSearch.length !== 0 && search !== "" ? (
+                    <main className="py-4">
+                        <div className="container">
+                            <div className="formModal" style={{
+                                width: 600,
+                                marginLeft: '120px',
+                                position: 'absolute',
+                                bottom: '540px',
+                            }}>
+                                <form className="formGroup" onSubmit={handleSearch}
+                                    style={{ marginRight: '15px' }}
+                                >
+                                    <input
+                                        className="inputSearch"
+                                        type="search"
+                                        placeholder="Search for literature"
+                                        aria-label="Search"
+                                        onChange={handleChange}
+                                        value={search}
+                                    />
+                                    <Button
+                                        className="searchButton"
+                                        variant="warning"
+                                        type="submit"
+                                        required>
+                                        <img src={iconSearch} alt='icon-search' />
+                                    </Button>
+                                </form>
+                            </div>
+                            <div className="result-search">
+                                <div className="row-result">
+                                    <div className="anytime">
+                                        <p
+                                            style={{
+                                                textAlign: 'start',
+                                                paddingLeft: '80px',
+                                                paddingBottom: '10px',
+                                            }}
+                                        >Anytime</p>
+                                        <select
+                                            className="formSelect"
+                                            name="year"
+                                            id="year"
+                                            value={selectedYear}
+                                            onChange={handleChangeYears}
+                                        >
+                                            {years.map((item, index) => (
+                                                <option value={item} key={`year-${index}`}
+                                                    style={{ background: 'grey' }}
+                                                >
+                                                    Since {item}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="box-literature-result">
+                                        <div className="row">
+                                            {resultSearch
+                                                .filter((item) => {
+                                                    if (
+                                                        item?.publication_date.split("-")[0] >= selectedYear
+                                                    ) {
+                                                        return item;
+                                                    }
+                                                })
+                                                .map((item, index) => (
+                                                    <div className="col-3" key={`result-search-${index}`}
+                                                        style={{
+                                                            marginLeft: '20px',
+                                                        }}
+                                                    >
+                                                        <CollectionsPDF
+                                                            attache={item?.attache}
+                                                            literatureId={item?.id}
+                                                            status={item?.status}
+                                                            title={item?.title}
+                                                            author={item?.author}
+                                                            publication_date={item?.publication_date}
+                                                        />
+                                                    </div>
+                                                ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                ) : (
+                    <div
+                        className="boxSearch"
+                        style={{ height: "100vh" }}
+                    >
+                        <img src={iconLiterature} alt="Literature Logo"
+                            style={{
+                                position: 'absolute',
+                                top: '220px',
+                                right: '520px'
+                            }}
+                        />
                         <div className="formModal" style={{
                             width: 600,
-                            marginLeft: '120px',
-                            position: 'absolute',
-                            bottom: '540px',
+                            marginLeft: '450px',
+                            marginTop: '50px'
                         }}>
-                            <form className="formGroup" onSubmit={handleSearch}
-                                style={{ marginRight: '15px' }}
-                            >
+                            <form className="formGroup" onSubmit={handleSearch}>
                                 <input
                                     className="inputSearch"
                                     type="search"
@@ -98,98 +192,10 @@ export default function SearchResult() {
                                 </Button>
                             </form>
                         </div>
-                        <div className="result-search">
-                            <div className="row-result">
-                                <div className="anytime">
-                                    <p
-                                        style={{
-                                            textAlign: 'start',
-                                            paddingLeft: '80px',
-                                            paddingBottom: '10px',
-                                        }}
-                                    >Anytime</p>
-                                    <select
-                                        className="formSelect"
-                                        name="year"
-                                        id="year"
-                                        value={selectedYear}
-                                        onChange={handleChangeYears}
-                                    >
-                                        {years.map((item, index) => (
-                                            <option value={item} key={`year-${index}`}
-                                                style={{ background: 'grey' }}
-                                            >
-                                                Since {item}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div className="box-literature-result">
-                                    <div className="row">
-                                        {resultSearch
-                                            .filter((item) => {
-                                                if (
-                                                    item?.publication_date.split("-")[0] >= selectedYear
-                                                ) {
-                                                    return item;
-                                                }
-                                            })
-                                            .map((item, index) => (
-                                                <div className="col-3" key={`result-search-${index}`}>
-                                                    <CollectionsPDF
-                                                        attache={item?.attache}
-                                                        literatureId={item?.id}
-                                                        status={item?.status}
-                                                        title={item?.title}
-                                                        author={item?.author}
-                                                        publication_date={item?.publication_date}
-                                                    />
-                                                </div>
-                                            ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </main>
-            ) : (
-                <div
-                    className="boxSearch"
-                    style={{ height: "100vh" }}
-                >
-                    <img src={iconLiterature} alt="Literature Logo"
-                        style={{
-                            position: 'absolute',
-                            top: '220px',
-                            right: '520px'
-                        }}
-                    />
-                    <div className="formModal" style={{
-                        width: 600,
-                        marginLeft: '450px',
-                        marginTop: '50px'
-                    }}>
-                        <form className="formGroup" onSubmit={handleSearch}>
-                            <input
-                                className="inputSearch"
-                                type="search"
-                                placeholder="Search for literature"
-                                aria-label="Search"
-                                onChange={handleChange}
-                                value={search}
-                            />
-                            <Button
-                                className="searchButton"
-                                variant="warning"
-                                type="submit"
-                                required>
-                                <img src={iconSearch} alt='icon-search' />
-                            </Button>
-                        </form>
-                    </div>
-                </div>
-            )
-            }
-        </div >
+                )
+                }
+            </div >
+        </>
     );
 }
