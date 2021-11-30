@@ -1,6 +1,5 @@
 // Import React
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import React, { useContext } from "react";
 import { AuthContext } from '../../Context/AuthContextProvider';
 import { pdfjs, Document, Page } from "react-pdf";
@@ -76,7 +75,7 @@ export default function AddLiterature() {
                 setInput({
                     title: "",
                     userId: stateAuth.user?.id,
-                    publication_date: "",
+                    publication_date: null,
                     pages: "",
                     isbn: "",
                     author: "",
@@ -86,6 +85,11 @@ export default function AddLiterature() {
                 setPreview(null);
 
                 toast.success(`Add Literature Successful`, {
+                    position: toast.POSITION.BOTTOM_RIGHT,
+                    autoClose: 2000
+                })
+            } else {
+                toast.info(`Please fill in the blank input`, {
                     position: toast.POSITION.BOTTOM_RIGHT,
                     autoClose: 2000
                 })

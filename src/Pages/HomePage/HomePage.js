@@ -1,14 +1,22 @@
+// Import React
 import { useState } from "react";
+
+// Import Style
 import './Search.css'
 import { Button } from "react-bootstrap";
-import { API } from "../../config/api";
 import iconLiterature from '../../Images/icon-lg.png'
 import iconSearch from '../../Images/icon-search.png'
+import { toast } from 'react-toastify'
+import iconPDF from '../../Images/pdf-file.png'
+import 'react-toastify/dist/ReactToastify.css'
+
+// Import Components
 import Navbar from '../../Components/Navbar/Navbar'
 import CollectionsPDF from "../../Components/Collections/collectionsPDF";
 
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+// Import API
+import { API } from "../../config/api";
+
 toast.configure()
 
 export default function SearchResult() {
@@ -52,9 +60,6 @@ export default function SearchResult() {
 
             publication_year(response.data.data);
 
-            console.log(resultSearch);
-            console.log(search);
-
             if (search === "" && resultSearch.length !== 0) {
                 toast.info('your search is not in our library', {
                     position: toast.POSITION.BOTTOM_RIGHT,
@@ -65,6 +70,8 @@ export default function SearchResult() {
             console.log(error);
         }
     };
+
+    console.log(resultSearch?.status);
 
     return (
         <>
@@ -141,14 +148,43 @@ export default function SearchResult() {
                                                             marginLeft: '20px',
                                                         }}
                                                     >
-                                                        <CollectionsPDF
-                                                            attache={item?.attache}
-                                                            literatureId={item?.id}
-                                                            status={item?.status}
-                                                            title={item?.title}
-                                                            author={item?.author}
-                                                            publication_date={item?.publication_date}
-                                                        />
+                                                        {item?.status === "Approve" ? (
+                                                            <CollectionsPDF
+                                                                attache={item?.attache}
+                                                                literatureId={item?.id}
+                                                                status={item?.status}
+                                                                title={item?.title}
+                                                                author={item?.author}
+                                                                publication_date={item?.publication_date}
+                                                            />
+                                                        ) : (
+                                                            <>
+                                                                <div
+                                                                    style={{
+                                                                        width: '1000px'
+                                                                    }}>
+                                                                    <div
+                                                                        style={{
+                                                                            display: 'flex',
+                                                                            justifyContent: 'center',
+                                                                            opacity: '70%'
+                                                                        }}>
+                                                                        <img src={iconPDF} alt=""
+                                                                            style={{
+                                                                                width: '350px',
+                                                                                height: '350px',
+                                                                            }} />
+                                                                    </div>
+                                                                    <h3
+                                                                        style={{
+                                                                            display: 'flex',
+                                                                            justifyContent: 'center',
+                                                                            opacity: '70%',
+                                                                        }}
+                                                                    >Search Not Found</h3>
+                                                                </div>
+                                                            </>
+                                                        )}
                                                     </div>
                                                 ))}
                                         </div>

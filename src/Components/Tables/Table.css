@@ -33,6 +33,9 @@ tr td{
 height: 73.14px;
 padding-left: 10px;
 }
+tbody tr:nth-child(2n){
+    background: black !important;
+}
 
 .title-verification{
     position: absolute;

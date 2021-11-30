@@ -62,7 +62,7 @@ export default function DetailLiterature() {
                 );
 
                 if (response?.status === 200) {
-                    toast.success(`Delete My Collect Success`, {
+                    toast.success(`Remove My Collect Success`, {
                         position: toast.POSITION.BOTTOM_RIGHT,
                         autoClose: 2000
                     })
@@ -106,7 +106,7 @@ export default function DetailLiterature() {
 
     const handleDownload = () => {
         downloadFile(detail.attache, String(detail.title));
-        toast.success(`Delete My Collect Success`, {
+        toast.success(`Download Starting..`, {
             position: toast.POSITION.BOTTOM_RIGHT,
             autoClose: 2000
         })

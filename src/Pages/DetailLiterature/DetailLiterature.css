@@ -74,7 +74,7 @@ width: 212px;
 height: 50px;
 left: 1135px;
 top: 161px;
-background: hsl(7, 72%, 40%);
+background: #AF2E1C;
 border-radius: 5px;
 }
 
@@ -95,7 +95,7 @@ border-radius: 5px;
     height: 50px;
     left: 1135px;
     top: 161px;
-    background: #5f0f40;
+    background: #AF2E1C;
     border-radius: 5px;
     align-items: center;
     }

@@ -1,5 +1,6 @@
 .container-page-search{
-    height: max-content !important;
+    height: 500px !important;
+    border: solid red 10px !important;
 }
 
 .result-search{

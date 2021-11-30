@@ -160,6 +160,10 @@ border-radius: 5px;
     color: #FFFFFF !important;
   }
   
+.container-literature{
+position: relative;
+}
+
 .my-literature{
   position: relative;
   width: 245px;

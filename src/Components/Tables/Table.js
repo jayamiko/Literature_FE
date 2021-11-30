@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 // Import API
 import { API } from "../../config/api";
+import { Children } from "react";
 
 toast.configure()
 
@@ -69,7 +70,8 @@ export default function TableVerification() {
                 </h1>
                 <Card className='card-table'>
                     <Card.Body >
-                        <Table hover className="table-body">
+                        <Table hover className="table-body"
+                        >
                             <thead>
                                 <tr className="tb-header">
                                     <th style={{ paddingLeft: '10px', width: '90px' }}>No</th>
