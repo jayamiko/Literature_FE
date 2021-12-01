@@ -14,6 +14,7 @@ import Profile from "./Pages/Profile/Profile";
 import AddLiterature from "./Pages/AddLiterature/AddLiterature";
 import MyCollections from "./Pages/MyCollections/MyCollections";
 import DetailLiterature from './Pages/DetailLiterature/DetailLiterature';
+import NotFound from './Pages/NotFound'
 
 // Import Style
 import './App.css';
@@ -70,6 +71,9 @@ function App() {
 
         {/* Admin Page */}
         <PrivateRoute exact path="/admin-page" component={AdminPage} />
+
+        {/* 404 NOT FOUND */}
+        <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
   );

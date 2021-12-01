@@ -34,7 +34,6 @@ export default function MyCollections() {
         getMyCollections();
     }, []);
 
-    console.log(myCollections.length);
 
     return (
         <>

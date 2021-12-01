@@ -116,7 +116,10 @@ export default function DetailLiterature() {
         <>
             <Navbar />
             <div className='detail-box'>
-                <div>
+                <div style={{ cursor: "pointer" }}
+                    onClick={() => {
+                        window.open(detail?.attache);
+                    }}>
                     <Document file={detail?.attache} style={{
                         borderRadius: '10px',
                         position: 'absolute',
@@ -157,7 +160,8 @@ export default function DetailLiterature() {
                                 fontFamily: 'Avenir',
                                 fontSize: '18px',
                                 lineHeight: '25px',
-                                color: '#FFFFFF'
+                                color: '#FFFFFF',
+                                cursor: 'pointer'
                             }}>
                             Download
                             <img src={iconDownload} alt="icon-download" />

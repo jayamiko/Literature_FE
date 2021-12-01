@@ -27,7 +27,6 @@ export default function MyLiteature({ stateAuth }) {
         getMyLiterature();
     }, []);
 
-    console.log(myLiterature);
 
     return (
         <>

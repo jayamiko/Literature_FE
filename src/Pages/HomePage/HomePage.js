@@ -71,8 +71,6 @@ export default function SearchResult() {
         }
     };
 
-    console.log(resultSearch?.status);
-
     return (
         <>
             <Navbar />
@@ -159,30 +157,6 @@ export default function SearchResult() {
                                                             />
                                                         ) : (
                                                             <>
-                                                                <div
-                                                                    style={{
-                                                                        width: '1000px'
-                                                                    }}>
-                                                                    <div
-                                                                        style={{
-                                                                            display: 'flex',
-                                                                            justifyContent: 'center',
-                                                                            opacity: '70%'
-                                                                        }}>
-                                                                        <img src={iconPDF} alt=""
-                                                                            style={{
-                                                                                width: '350px',
-                                                                                height: '350px',
-                                                                            }} />
-                                                                    </div>
-                                                                    <h3
-                                                                        style={{
-                                                                            display: 'flex',
-                                                                            justifyContent: 'center',
-                                                                            opacity: '70%',
-                                                                        }}
-                                                                    >Search Not Found</h3>
-                                                                </div>
                                                             </>
                                                         )}
                                                     </div>

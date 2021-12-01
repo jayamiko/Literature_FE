@@ -88,15 +88,14 @@ export default function AddLiterature() {
                     position: toast.POSITION.BOTTOM_RIGHT,
                     autoClose: 2000
                 })
-            } else {
-                toast.info(`Please fill in the blank input`, {
-                    position: toast.POSITION.BOTTOM_RIGHT,
-                    autoClose: 2000
-                })
             }
 
         } catch (error) {
             console.log(error);
+            toast.info(`Please enter the data correctly`, {
+                position: toast.POSITION.BOTTOM_RIGHT,
+                autoClose: 2000
+            })
         }
     };
 

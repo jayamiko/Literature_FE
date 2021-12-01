@@ -103,6 +103,10 @@ export default function Register() {
 
         } catch (error) {
             console.log(error);
+            toast.error(`Please fill in your data valid`, {
+                position: toast.POSITION.BOTTOM_RIGHT,
+                autoClose: 2000
+            })
         }
     }
 

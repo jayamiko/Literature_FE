@@ -60,8 +60,6 @@ export default function TableVerification() {
         getLiteratures();
     }, []);
 
-    console.log(literatures);
-
     return (
         <>
             <Container className='container-table'>

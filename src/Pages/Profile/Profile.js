@@ -20,7 +20,7 @@ import MyLiterature from './myLiterature'
 // Import API
 import { API } from "../../config/api";
 
-export default function MyCollections() {
+export default function Profile() {
 
     const { stateAuth } = useContext(AuthContext);
     const [profile, setProfile] = useState([]);
@@ -37,7 +37,6 @@ export default function MyCollections() {
     useEffect(() => {
         getProfile();
     }, []);
-    console.log(profile);
 
     return (
         <>

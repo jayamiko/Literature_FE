@@ -9,7 +9,6 @@ import HomePage from "./HomePage/HomePage";
 export default function Landing() {
 
     const { stateAuth, dispatch } = useContext(AuthContext);
-    console.log(stateAuth.user.status);
 
     return (
         <>

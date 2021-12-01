@@ -87,6 +87,10 @@ export default function Login() {
             }
         } catch (error) {
             console.log(error);
+            toast.error(`Your email and password are invalid`, {
+                position: toast.POSITION.BOTTOM_RIGHT,
+                autoClose: 2000
+            })
         }
     };
 
